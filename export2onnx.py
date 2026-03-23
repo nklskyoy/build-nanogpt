@@ -212,7 +212,6 @@ if __name__ == '__main__':
         x,
         "gpt2.onnx",
         export_params=True,
-        do_constant_folding=True,
         input_names=['idx'],
         output_names=['logits'],
         dynamic_axes={
