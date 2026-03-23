@@ -207,6 +207,18 @@ if __name__ == '__main__':
 
      ## export the model to onnx
     print("Exporting the model to ONNX")
-    torch.onnx.export(model, x, "gpt22.onnx", verbose=True)
+    torch.onnx.export(
+        model,
+        x,
+        "gpt2.onnx",
+        export_params=True,
+        do_constant_folding=True,
+        input_names=['idx'],
+        output_names=['logits'],
+        dynamic_axes={
+            'idx': {0: 'batch_size', 1: 'sequence_length'},
+            'logits': {0: 'batch_size'}
+        },
+        verbose=True)
 
     print("Model exported successfully!!!")
